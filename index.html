@@ -100,10 +100,13 @@
         }
 
         /* ************************************** */
-        /* CATEGORIE TAB STIJLEN */
+        /* CATEGORIE TAB STIJLEN (Aangepast) */
         .category-filter {
             text-align: center;
             margin-bottom: 40px;
+            overflow-x: auto; /* Scrollen op kleine schermen */
+            white-space: nowrap; /* Knoppen op één lijn houden */
+            padding-bottom: 10px; /* Ruimte voor de scrollbar op sommige browsers */
         }
         
         .category-filter a {
@@ -308,14 +311,16 @@
         <h1>Items in stock</h1>
         
         <nav class="category-filter">
-            <a data-category="all" class="active">Alle Items</a>
-            <a data-category="tshirt">T-shirts</a>
-            <a data-category="hoodie">Hoodies</a>
+            <a data-category="all" class="active">All items</a>
+            <a data-category="sirsnuggles">SirSnuggles</a>
+            <a data-category="whisper">Whisper</a>
+            <a data-category="puff">Puff</a>
+            <a data-category="asnuggle">A Snuggle Movie</a>
         </nav>
         
         <div class="product-grid" id="productGrid"> 
             
-            <a href="#" class="product-card" data-category="tshirt">
+            <a href="#" class="product-card" data-category="sirsnuggles">
                 <div class="product-image-container">
                     <img src="images/tshirt-sirsnuggles-front.png" alt="T-shirt SirSnuggles" class="product-image primary-img">
                     <img src="images/tshirt-sirsnuggles-back.png" alt="T-shirt SirSnuggles Back" class="product-image secondary-img">
@@ -325,16 +330,16 @@
                 <span class="add-to-cart">Add to cart</span>
             </a>
             
-            <a href="#" class="product-card hidden" data-category="hoodie">
+            <a href="#" class="product-card hidden" data-category="whisper">
                 <div class="product-image-container">
-                    <img src="images/hoodie-placeholder-front.png" alt="SirSnuggles Hoodie" class="product-image primary-img">
-                    <img src="images/hoodie-placeholder-back.png" alt="SirSnuggles Hoodie Back" class="product-image secondary-img">
+                    <img src="images/hoodie-placeholder-front.png" alt="Whisper Hoodie" class="product-image primary-img">
+                    <img src="images/hoodie-placeholder-back.png" alt="Whisper Hoodie Back" class="product-image secondary-img">
                 </div>
-                <div class="product-title">SirSnuggles Hoodie</div>
+                <div class="product-title">Whisper Hoodie</div>
                 <div class="product-price">€ 35,-</div>
                 <span class="add-to-cart">Add to cart</span>
             </a>
-
+            
             <div class="product-card coming-soon" data-category="all">
                 <div class="product-image-container">
                     <img src="images/comming-soon.png" alt="Comming soon" class="product-image primary-img">
@@ -373,7 +378,7 @@
                     // Toon het product als:
                     // 1. De geselecteerde categorie 'all' is
                     // 2. De categorie van het product overeenkomt met de geselecteerde categorie
-                    // 3. HET PRODUCT 'COMING SOON' IS (zodat het altijd zichtbaar is bij 'Alle Items')
+                    // 3. HET PRODUCT 'COMING SOON' IS (zodat het altijd zichtbaar is bij 'All items')
                     if (category === 'all' || productCategory === category || card.classList.contains('coming-soon')) {
                         card.classList.remove('hidden');
                     } else {
