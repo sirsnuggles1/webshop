@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SirSnuggles Shop</title>
+    <title>Webshop - SirSnuggles</title>
     
     <link rel="icon" type="image/png" href="images/Favicon.png">
     
@@ -84,17 +84,19 @@
         }
 
         /* ************************************** */
-        /* SHOP BANNER STIJL (VERPLAATST UIT MEDIA QUERY) */
+        /* SHOP BANNER STIJL - NU MET AFBEELDING */
         .shop-banner {
-            /* De Hub/Movie gradient */
-            background: linear-gradient(90deg, #a876ff 0%, #4d94ff 100%); 
+            /* Dit is de achtergrondafbeelding die je wilt gebruiken */
+            background-image: url('images/shop_banner_image.jpg'); /* <<--- BELANGRIJKE WIJZIGING HIER */
+            background-size: cover; /* Zorgt dat de afbeelding de hele banner vult */
+            background-position: center; /* Centreert de afbeelding */
             
-            /* De padding geeft de banner de benodigde hoogte */
-            padding: 20px 20px; 
-            
-            text-align: center;
+            /* Fallback kleur als de afbeelding niet laadt, of als je geen afbeelding wilt */
+            background-color: linear-gradient(90deg, #a876ff 0%, #4d94ff 100%); 
+
+            padding: 80px 20px; /* Meer padding voor een grotere, opvallende banner */
             border-radius: 10px;
-            margin-bottom: 40px; /* Ruimte onder de banner */
+            margin-bottom: 40px; 
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
         /* ************************************** */
@@ -102,7 +104,6 @@
 
         .product-grid {
             display: grid;
-            /* 3 kolommen voor desktop, flexibel in grootte */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 30px;
             max-width: 1200px;
@@ -121,19 +122,21 @@
             color: inherit;
         }
         
-        /* Zorgt dat de hover alleen werkt op actieve kaarten */
         .product-card:hover:not(.coming-soon) { 
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
+        /* ************************************** */
+        /* PRODUCT AFBEELDING STIJL FIX */
         .product-image {
             width: 100%;
-            height: 200px; /* Teruggezet naar standaardhoogte voor productafbeeldingen */
-            object-fit: cover;
+            height: 200px; /* Consistente hoogte voor alle productafbeeldingen */
+            object-fit: cover; /* Zorgt dat de afbeelding netjes past en niet uitrekt */
             border-radius: 8px;
             margin-bottom: 15px;
         }
+        /* ************************************** */
 
         .product-title {
             font-size: 1.2em;
@@ -152,7 +155,6 @@
             display: inline-block;
             padding: 10px 20px;
             border-radius: 25px;
-            /* De bekende knopgradiënt */
             background: linear-gradient(to right, #00c6ff, #0072ff); 
             color: white;
             font-weight: 600;
@@ -165,7 +167,7 @@
         }
         
         /* ************************************** */
-        /* STIJL VOOR COMING SOON PRODUCTEN (NU EENMALIG) */
+        /* STIJL VOOR COMING SOON PRODUCTEN */
         .product-card.coming-soon {
             opacity: 0.6;
             cursor: default;
@@ -233,13 +235,13 @@
 
     <main>
         
+        <h1>Items in stock</h1>
+        
         <section class="shop-banner">
             </section>
         
-        <h1>Items in stock</h1>
-        
         <div class="product-grid"> 
-        <a href="#" class="product-card">
+            <a href="#" class="product-card">
                 <img src="images/product-placeholder-1.jpg" alt="Product 1" class="product-image">
                 <div class="product-title">Item</div>
                 <div class="product-price">€ 19,95</div>
@@ -252,8 +254,8 @@
                 <span class="coming-soon-badge">Comming soon</span>
             </div>
             
-            </div> 
-        </main>
+        </div> 
+    </main>
 
     <footer>
         <p>&copy; 2025 SirSnuggles Shop. Alle rechten voorbehouden.</p>
