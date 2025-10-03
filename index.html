@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webshop</title>
+    <title>SirSnuggles Shop</title>
     
     <link rel="icon" type="image/png" href="images/Favicon.png">
     
@@ -83,6 +83,23 @@
             color: #333;
         }
 
+        /* ************************************** */
+        /* SHOP BANNER STIJL (VERPLAATST UIT MEDIA QUERY) */
+        .shop-banner {
+            /* De Hub/Movie gradient */
+            background: linear-gradient(90deg, #a876ff 0%, #4d94ff 100%); 
+            
+            /* De padding geeft de banner de benodigde hoogte */
+            padding: 20px 20px; 
+            
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px; /* Ruimte onder de banner */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* ************************************** */
+
+
         .product-grid {
             display: grid;
             /* 3 kolommen voor desktop, flexibel in grootte */
@@ -103,15 +120,16 @@
             text-decoration: none;
             color: inherit;
         }
-
-        .product-card:hover {
+        
+        /* Zorgt dat de hover alleen werkt op actieve kaarten */
+        .product-card:hover:not(.coming-soon) { 
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .product-image {
             width: 100%;
-            height: 500px;
+            height: 200px; /* Teruggezet naar standaardhoogte voor productafbeeldingen */
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 15px;
@@ -146,6 +164,33 @@
             opacity: 0.9;
         }
         
+        /* ************************************** */
+        /* STIJL VOOR COMING SOON PRODUCTEN (NU EENMALIG) */
+        .product-card.coming-soon {
+            opacity: 0.6;
+            cursor: default;
+            pointer-events: none; 
+            box-shadow: none;
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #ccc; 
+            color: #555;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        
+        .product-card.coming-soon:hover {
+            transform: none; 
+            box-shadow: none;
+        }
+        /* ************************************** */
+
         /* FOOTER */
         footer {
             background-color: #333;
@@ -167,53 +212,6 @@
             nav ul li a {
                 margin-left: 15px;
             }
-
-            /* STIJL VOOR COMING SOON PRODUCTEN */
-        .product-card.coming-soon {
-            /* Maakt de hele kaart wat grijzer om te laten zien dat hij inactief is */
-            opacity: 0.6;
-            cursor: default;
-            pointer-events: none; /* Zorgt ervoor dat er niet geklikt kan worden */
-            box-shadow: none;
-        }
-        
-        /* Visuele badge voor de melding */
-        .coming-soon-badge {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 25px;
-            /* Een neutrale, maar duidelijke grijze kleur */
-            background-color: #ccc; 
-            color: #555;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9em;
-            margin-top: 15px;
-        }
-
-        /* Haalt de hover-animatie weg van de coming soon kaart */
-        .product-card.coming-soon:hover {
-            transform: none; 
-            box-shadow: none;
-        }
-
-        /* SHOP BANNER STIJL (GEEN TEKST) */
-        .shop-banner {
-            /* De Hub/Movie gradient */
-            background: linear-gradient(90deg, #a876ff 0%, #4d94ff 100%); 
-            
-            /* De padding is nu kleiner, omdat er geen tekst in zit */
-            padding: 20px 20px; 
-            
-            text-align: center;
-            border-radius: 10px;
-            margin-bottom: 40px; /* Ruimte onder de banner */
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            background-image: url('images/banner.png');
-            
-            /* Je kunt hier eventueel een achtergrondafbeelding toevoegen als je dat wilt: */
-            /* background-image: url('images/banner_shop_visual.jpg'); */
-            /* background-size: cover; */
         }
     </style>
 </head>
@@ -238,8 +236,10 @@
         <section class="shop-banner">
             </section>
         
-        <h1>Items in stock</h1>  
-            <a href="#" class="product-card">
+        <h1>Items in stock</h1>
+        
+        <div class="product-grid"> 
+        <a href="#" class="product-card">
                 <img src="images/product-placeholder-1.jpg" alt="Product 1" class="product-image">
                 <div class="product-title">Item</div>
                 <div class="product-price">€ 19,95</div>
@@ -248,14 +248,12 @@
 
             <div class="product-card coming-soon">
                 <img src="images/comming-soon.png" alt="Comming soon" class="product-image">
-    
                 <div class="product-title">???</div>
-    
                 <span class="coming-soon-badge">Comming soon</span>
             </div>
-
-        </div>
-    </main>
+            
+            </div> 
+        </main>
 
     <footer>
         <p>&copy; 2025 SirSnuggles Shop. Alle rechten voorbehouden.</p>
