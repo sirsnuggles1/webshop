@@ -99,6 +99,41 @@
             height: auto; 
         }
 
+        /* ************************************** */
+        /* CATEGORIE TAB STIJLEN */
+        .category-filter {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .category-filter a {
+            display: inline-block;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .category-filter a:hover {
+            background-color: #f0f4ff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styling voor de actieve knop */
+        .category-filter a.active {
+            background: linear-gradient(to right, #00c6ff, #0072ff); 
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        /* ************************************** */
+
+
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -120,6 +155,11 @@
             position: relative; 
         }
         
+        /* Verbergt kaarten als ze niet bij de geselecteerde tab horen */
+        .product-card.hidden {
+            display: none !important;
+        }
+        
         .product-card:hover:not(.coming-soon) { 
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -128,10 +168,9 @@
         /* ************************************** */
         /* PRODUCT AFBEELDING STIJL FIX & HOVER EFFECT */
         
-        /* De container voor de afbeeldingen in de kaart */
+        /* De container voor de afbeeldingen in de kaart (vierkant) */
         .product-image-container {
             position: relative;
-            /* FIX: Vaste hoogte om het vierkant te maken (breedte is 100% van de kaart) */
             height: 280px; 
             width: 100%;
             margin-bottom: 15px;
@@ -239,6 +278,9 @@
             nav ul li a {
                 margin-left: 15px;
             }
+            .category-filter a {
+                margin: 5px; 
+            }
         }
     </style>
 </head>
@@ -265,9 +307,15 @@
         
         <h1>Items in stock</h1>
         
-        <div class="product-grid"> 
+        <nav class="category-filter">
+            <a data-category="all" class="active">Alle Items</a>
+            <a data-category="tshirt">T-shirts</a>
+            <a data-category="hoodie">Hoodies</a>
+        </nav>
+        
+        <div class="product-grid" id="productGrid"> 
             
-            <a href="#" class="product-card">
+            <a href="#" class="product-card" data-category="tshirt">
                 <div class="product-image-container">
                     <img src="images/tshirt-sirsnuggles-front.png" alt="T-shirt SirSnuggles" class="product-image primary-img">
                     <img src="images/tshirt-sirsnuggles-back.png" alt="T-shirt SirSnuggles Back" class="product-image secondary-img">
@@ -276,8 +324,18 @@
                 <div class="product-price">€ 15,-</div>
                 <span class="add-to-cart">Add to cart</span>
             </a>
+            
+            <a href="#" class="product-card hidden" data-category="hoodie">
+                <div class="product-image-container">
+                    <img src="images/hoodie-placeholder-front.png" alt="SirSnuggles Hoodie" class="product-image primary-img">
+                    <img src="images/hoodie-placeholder-back.png" alt="SirSnuggles Hoodie Back" class="product-image secondary-img">
+                </div>
+                <div class="product-title">SirSnuggles Hoodie</div>
+                <div class="product-price">€ 35,-</div>
+                <span class="add-to-cart">Add to cart</span>
+            </a>
 
-            <div class="product-card coming-soon">
+            <div class="product-card coming-soon" data-category="all">
                 <div class="product-image-container">
                     <img src="images/comming-soon.png" alt="Comming soon" class="product-image primary-img">
                 </div>
@@ -292,5 +350,50 @@
         <p>&copy; 2025 Webshop - SirSnuggles | This site is part of SirSnuggles. Use photos and other information only with permission from SirSnuggles.</p>
     </footer>
 
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryLinks = document.querySelectorAll('.category-filter a');
+            const productCards = document.querySelectorAll('.product-grid .product-card');
+
+            // Functie om de producten te tonen/verbergen
+            function filterProducts(category) {
+                // Verwijder 'active' class van alle knoppen
+                categoryLinks.forEach(link => link.classList.remove('active'));
+
+                // Voeg 'active' class toe aan de geklikte knop
+                const clickedLink = document.querySelector(`.category-filter a[data-category="${category}"]`);
+                if (clickedLink) {
+                    clickedLink.classList.add('active');
+                }
+
+                // Loop door alle productkaarten
+                productCards.forEach(card => {
+                    const productCategory = card.getAttribute('data-category');
+                    
+                    // Toon het product als:
+                    // 1. De geselecteerde categorie 'all' is
+                    // 2. De categorie van het product overeenkomt met de geselecteerde categorie
+                    // 3. HET PRODUCT 'COMING SOON' IS (zodat het altijd zichtbaar is bij 'Alle Items')
+                    if (category === 'all' || productCategory === category || card.classList.contains('coming-soon')) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Voeg de event listener toe aan elke categorie knop
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Voorkomt dat de pagina herlaadt
+                    const category = this.getAttribute('data-category');
+                    filterProducts(category);
+                });
+            });
+
+            // Zorg ervoor dat de 'all' categorie standaard actief is bij het laden
+            filterProducts('all'); 
+        });
+    </script>
+    </body>
 </html>
