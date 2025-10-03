@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webshop - SirSnuggles</title>
+    <title>SirSnuggles Shop</title>
     
     <link rel="icon" type="image/png" href="images/Favicon.png">
     
@@ -84,17 +84,17 @@
         }
 
         /* ************************************** */
-        /* SHOP BANNER STIJL - NU MET AFBEELDING */
+        /* SHOP BANNER STIJL - NU MET IMAGES/BANNER.PNG */
         .shop-banner {
-            /* Dit is de achtergrondafbeelding die je wilt gebruiken */
-            background-image: url('images/banner.png'); /* <<--- BELANGRIJKE WIJZIGING HIER */
+            /* BELANGRIJKE WIJZIGING: Gebruikt de juiste afbeelding */
+            background-image: url('images/banner.png'); 
             background-size: cover; /* Zorgt dat de afbeelding de hele banner vult */
             background-position: center; /* Centreert de afbeelding */
             
-            /* Fallback kleur als de afbeelding niet laadt, of als je geen afbeelding wilt */
+            /* Fallback kleur/hoogte als de afbeelding ontbreekt */
             background-color: linear-gradient(90deg, #a876ff 0%, #4d94ff 100%); 
 
-            padding: 80px 20px; /* Meer padding voor een grotere, opvallende banner */
+            padding: 80px 20px; /* Bepaalt de hoogte van de banner */
             border-radius: 10px;
             margin-bottom: 40px; 
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -234,9 +234,12 @@
     </header>
 
     <main>
-         <section class="shop-banner">
-            </section>
+        
         <h1>Items in stock</h1>
+        
+        <section class="shop-banner">
+            </section>
+        
         <div class="product-grid"> 
             <a href="#" class="product-card">
                 <img src="images/product-placeholder-1.jpg" alt="Product 1" class="product-image">
