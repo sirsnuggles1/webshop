@@ -84,15 +84,16 @@
         }
 
         /* ************************************** */
-        /* SHOP BANNER STIJL - NU MET IMAGES/BANNER.PNG */
+        /* SHOP BANNER STIJL - NU CORRECT MET JOUW AFBEELDING */
         .shop-banner {
-            /* BELANGRIJKE WIJZIGING: Gebruikt de juiste afbeelding */
+            /* Dit gebruikt NU jouw gespecificeerde afbeelding */
             background-image: url('images/banner.png'); 
             background-size: cover; /* Zorgt dat de afbeelding de hele banner vult */
             background-position: center; /* Centreert de afbeelding */
+            background-repeat: no-repeat; /* Voorkomt herhaling als de afbeelding klein is */
             
-            /* Fallback kleur/hoogte als de afbeelding ontbreekt */
-            background-color: linear-gradient(90deg, #a876ff 0%, #4d94ff 100%); 
+            /* Een fallback kleur als de afbeelding niet geladen kan worden */
+            background-color: #f0f4ff; 
 
             padding: 80px 20px; /* Bepaalt de hoogte van de banner */
             border-radius: 10px;
