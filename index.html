@@ -196,6 +196,25 @@
             transform: none; 
             box-shadow: none;
         }
+
+        /* SHOP BANNER STIJL (GEEN TEKST) */
+        .shop-banner {
+            /* De Hub/Movie gradient */
+            background: linear-gradient(90deg, #a876ff 0%, #4d94ff 100%); 
+            
+            /* De padding is nu kleiner, omdat er geen tekst in zit */
+            padding: 20px 20px; 
+            
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px; /* Ruimte onder de banner */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            background-image: url('images/banner.png');
+            
+            /* Je kunt hier eventueel een achtergrondafbeelding toevoegen als je dat wilt: */
+            /* background-image: url('images/banner_shop_visual.jpg'); */
+            /* background-size: cover; */
+        }
     </style>
 </head>
 <body>
@@ -216,7 +235,8 @@
 
     <main>
         <h1>Items in stock</h1>
-        
+        <section class="shop-banner">
+        </section>
         <div class="product-grid">
             
             <a href="#" class="product-card">
