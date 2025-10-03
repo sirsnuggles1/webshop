@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -83,25 +83,21 @@
             color: #333;
         }
 
-        /* ************************************** */
         /* SHOP BANNER STIJL (CONTAINER VOOR DE IMG) */
         .shop-banner {
             margin-bottom: 40px; 
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Schaduw op de container */
-            border-radius: 10px; /* Belangrijk voor de ronding */
-            overflow: hidden; /* Zorgt dat de afbeelding de afgeronde hoeken volgt */
-            line-height: 0; /* Voorkomt een kleine witruimte onder de afbeelding */
-            /* DE BACKGROUND-IMAGE REGELS ZIJN VERWIJDERD */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+            border-radius: 10px; 
+            overflow: hidden; 
+            line-height: 0; 
         }
 
-        /* NIEUWE STIJL VOOR DE BANNER AFBEELDING ZELF */
+        /* STIJL VOOR DE BANNER AFBEELDING ZELF */
         .shop-banner img {
             display: block;
             width: 100%;
-            height: auto; /* Zorgt dat de verhoudingen behouden blijven */
+            height: auto; 
         }
-        /* ************************************** */
-
 
         .product-grid {
             display: grid;
@@ -121,6 +117,8 @@
             overflow: hidden;
             text-decoration: none;
             color: inherit;
+            /* Zorgt ervoor dat de afbeeldingen in de kaart blijven */
+            position: relative; 
         }
         
         .product-card:hover:not(.coming-soon) { 
@@ -129,15 +127,42 @@
         }
 
         /* ************************************** */
-        /* PRODUCT AFBEELDING STIJL FIX */
-        .product-image {
-            width: 100%;
-            height: 200px; /* Consistente hoogte voor alle productafbeeldingen */
-            object-fit: cover; /* Zorgt dat de afbeelding netjes past en niet uitrekt */
-            border-radius: 8px;
+        /* PRODUCT AFBEELDING STIJL FIX & HOVER EFFECT */
+        
+        /* De container voor de afbeeldingen in de kaart */
+        .product-image-container {
+            position: relative;
+            height: 200px; /* Houdt de vaste hoogte vast */
             margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden; /* Zorgt voor de afgeronde hoeken */
+        }
+        
+        .product-image {
+            position: absolute; /* Plaatst beide afbeeldingen over elkaar */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease-in-out; /* Mooie overgang */
+        }
+
+        /* De secundaire (hover) afbeelding is standaard verborgen */
+        .secondary-img {
+            opacity: 0;
+        }
+
+        /* Bij HOVER over de kaart: verberg de primaire, toon de secundaire */
+        .product-card:hover .primary-img {
+            opacity: 0;
+        }
+
+        .product-card:hover .secondary-img {
+            opacity: 1;
         }
         /* ************************************** */
+
 
         .product-title {
             font-size: 1.2em;
@@ -167,7 +192,6 @@
             opacity: 0.9;
         }
         
-        /* ************************************** */
         /* STIJL VOOR COMING SOON PRODUCTEN */
         .product-card.coming-soon {
             opacity: 0.6;
@@ -192,7 +216,6 @@
             transform: none; 
             box-shadow: none;
         }
-        /* ************************************** */
 
         /* FOOTER */
         footer {
@@ -236,22 +259,28 @@
 
     <main>
         
+        <h1>Items in stock</h1>
+        
         <section class="shop-banner">
             <img src="images/banner.png" alt="Welkom in de SirSnuggles Shop Banner">
         </section>
         
-        <h1>Items in stock</h1>
-        
-        <a href="#" class="product-card">
-            <img src="images/product-placeholder-1.jpg" alt="Product 1 Voorkant" class="product-image primary-img">
-            <img src="images/product-placeholder-1-hover.jpg" alt="Product 1 Achterkant" class="product-image secondary-img">
-            <div class="product-title">T-shirt</div>
-            <div class="product-price">€ 19,95</div>
-            <span class="add-to-cart">Add to cart</span>
-        </a>
+        <div class="product-grid"> 
+            
+            <a href="#" class="product-card">
+                <div class="product-image-container">
+                    <img src="images/product-placeholder-1.jpg" alt="Product 1 Voorkant" class="product-image primary-img">
+                    <img src="images/product-placeholder-1-hover.jpg" alt="Product 1 Achterkant" class="product-image secondary-img">
+                </div>
+                <div class="product-title">Item</div>
+                <div class="product-price">€ 19,95</div>
+                <span class="add-to-cart">Add to cart</span>
+            </a>
 
             <div class="product-card coming-soon">
-                <img src="images/comming-soon.png" alt="Comming soon" class="product-image">
+                <div class="product-image-container">
+                    <img src="images/comming-soon.png" alt="Comming soon" class="product-image primary-img">
+                </div>
                 <div class="product-title">???</div>
                 <span class="coming-soon-badge">Comming soon</span>
             </div>
