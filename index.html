@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SirSnuggles Shop</title>
+    <title>Webshop</title>
     
     <link rel="icon" type="image/png" href="images/Favicon.png">
     
@@ -167,6 +167,34 @@
             nav ul li a {
                 margin-left: 15px;
             }
+
+            /* STIJL VOOR COMING SOON PRODUCTEN */
+        .product-card.coming-soon {
+            /* Maakt de hele kaart wat grijzer om te laten zien dat hij inactief is */
+            opacity: 0.6;
+            cursor: default;
+            pointer-events: none; /* Zorgt ervoor dat er niet geklikt kan worden */
+            box-shadow: none;
+        }
+        
+        /* Visuele badge voor de melding */
+        .coming-soon-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            /* Een neutrale, maar duidelijke grijze kleur */
+            background-color: #ccc; 
+            color: #555;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        /* Haalt de hover-animatie weg van de coming soon kaart */
+        .product-card.coming-soon:hover {
+            transform: none; 
+            box-shadow: none;
         }
     </style>
 </head>
@@ -187,37 +215,24 @@
     </header>
 
     <main>
-        <h1>Onze Populairste Items</h1>
+        <h1>Items in stock</h1>
         
         <div class="product-grid">
             
             <a href="#" class="product-card">
                 <img src="images/product-placeholder-1.jpg" alt="Product 1" class="product-image">
-                <div class="product-title">Super Snuggle Knuffel</div>
+                <div class="product-title">Item</div>
                 <div class="product-price">€ 19,95</div>
-                <span class="add-to-cart">In winkelwagen</span>
+                <span class="add-to-cart">Add to cart</span>
             </a>
 
-            <a href="#" class="product-card">
-                <img src="images/product-placeholder-2.jpg" alt="Product 2" class="product-image">
-                <div class="product-title">T-shirt Limited Edition</div>
-                <div class="product-price">€ 24,50</div>
-                <span class="add-to-cart">In winkelwagen</span>
-            </a>
-
-            <a href="#" class="product-card">
-                <img src="images/product-placeholder-3.jpg" alt="Product 3" class="product-image">
-                <div class="product-title">Mok met Logo</div>
-                <div class="product-price">€ 9,99</div>
-                <span class="add-to-cart">In winkelwagen</span>
-            </a>
-
-            <a href="#" class="product-card">
-                <img src="images/product-placeholder-4.jpg" alt="Product 4" class="product-image">
-                <div class="product-title">Mysterieuze Sticker Set</div>
-                <div class="product-price">€ 5,00</div>
-                <span class="add-to-cart">In winkelwagen</span>
-            </a>
+            <div class="product-card coming-soon">
+                <img src="images/product-placeholder-2.jpg" alt="Product 2 Binnenkort" class="product-image">
+    
+                <div class="product-title">Comming soon</div>
+    
+                <span class="coming-soon-badge">Comming soon</span>
+            </div>
 
         </div>
     </main>
