@@ -84,17 +84,21 @@
         }
 
         /* ************************************** */
-        /* SHOP BANNER STIJL - NU CORRECT MET JOUW AFBEELDING */
+        /* SHOP BANNER STIJL (CONTAINER VOOR DE IMG) */
         .shop-banner {
-            /* Dit gebruikt NU jouw gespecificeerde afbeelding */
-            background-image: url('images/banner.png'); 
-            background-size: cover; /* Zorgt dat de afbeelding de hele banner vult */
-            background-position: center; /* Centreert de afbeelding */
-            background-repeat: no-repeat; /* Voorkomt herhaling als de afbeelding klein is */
-            padding: 80px 20px; /* Bepaalt de hoogte van de banner */
-            border-radius: 10px;
             margin-bottom: 40px; 
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Schaduw op de container */
+            border-radius: 10px; /* Belangrijk voor de ronding */
+            overflow: hidden; /* Zorgt dat de afbeelding de afgeronde hoeken volgt */
+            line-height: 0; /* Voorkomt een kleine witruimte onder de afbeelding */
+            /* DE BACKGROUND-IMAGE REGELS ZIJN VERWIJDERD */
+        }
+
+        /* NIEUWE STIJL VOOR DE BANNER AFBEELDING ZELF */
+        .shop-banner img {
+            display: block;
+            width: 100%;
+            height: auto; /* Zorgt dat de verhoudingen behouden blijven */
         }
         /* ************************************** */
 
@@ -235,7 +239,8 @@
         <h1>Items in stock</h1>
         
         <section class="shop-banner">
-            </section>
+            <img src="images/banner.png" alt="Welkom in de SirSnuggles Shop Banner">
+        </section>
         
         <div class="product-grid"> 
             <a href="#" class="product-card">
